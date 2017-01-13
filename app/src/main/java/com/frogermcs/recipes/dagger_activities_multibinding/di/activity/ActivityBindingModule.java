@@ -1,7 +1,5 @@
 package com.frogermcs.recipes.dagger_activities_multibinding.di.activity;
 
-import android.app.Activity;
-
 import com.frogermcs.recipes.dagger_activities_multibinding.main_activity.MainActivity;
 import com.frogermcs.recipes.dagger_activities_multibinding.second_activity.SecondActivity;
 
@@ -21,15 +19,15 @@ public class ActivityBindingModule {
     @IntoMap
     @ActivityKey(MainActivity.class)
     @ActivityScope
-    ActivityInjector mainActivityInjector(final MembersInjector<MainActivity> membersInjector) {
-        return ActivityInjectors.from(membersInjector);
+    FieldsInjector mainActivityInjector(final MembersInjector<MainActivity> membersInjector) {
+        return FieldsInjectors.from(membersInjector);
     }
 
     @Provides
     @IntoMap
     @ActivityKey(SecondActivity.class)
     @ActivityScope
-    ActivityInjector secondActivityInjector(final MembersInjector<SecondActivity> membersInjector) {
-        return ActivityInjectors.from(membersInjector);
+    FieldsInjector secondActivityInjector(final MembersInjector<SecondActivity> membersInjector) {
+        return FieldsInjectors.from(membersInjector);
     }
 }

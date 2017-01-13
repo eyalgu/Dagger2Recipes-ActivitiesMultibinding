@@ -5,6 +5,6 @@ import android.app.Activity;
 /**
  * Created by froger_mcs on 18/09/16.
  */
-public interface HasMembersInjectors {
-    ActivityInjector getMembersInjector(Class<? extends Activity> aClass);
+public interface HasActivityFieldsInjectors {
+    <T extends Activity> FieldsInjector<T> getFieldsInjector(Class<T> activityClass);
 }

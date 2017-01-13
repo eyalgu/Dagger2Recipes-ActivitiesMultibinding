@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.frogermcs.recipes.dagger_activities_multibinding.BaseActivity;
 import com.frogermcs.recipes.dagger_activities_multibinding.R;
-import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityInjector;
+import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.FieldsInjector;
 
 import javax.inject.Inject;
 
@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 public class SecondActivity extends BaseActivity {
 
-    public interface Injector extends ActivityInjector {}
+    public interface Injector extends FieldsInjector {}
 
     @Inject
     SecondActivityPresenter presenter;

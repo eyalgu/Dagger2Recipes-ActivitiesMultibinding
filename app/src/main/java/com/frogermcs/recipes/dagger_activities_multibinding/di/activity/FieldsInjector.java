@@ -6,6 +6,6 @@ import android.app.Activity;
  * Created by eyalg on 1/13/17.
  */
 
-public interface ActivityInjector {
-    void inject(Activity activity);
+public interface FieldsInjector<T> {
+    void inject(T instance);
 }

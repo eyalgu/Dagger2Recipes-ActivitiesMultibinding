@@ -6,7 +6,7 @@ import android.content.Context;
 
 import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityComponent;
 import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityModule;
-import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.HasMembersInjectors;
+import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.HasActivityFieldsInjectors;
 import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityComponentFactory;
 import com.frogermcs.recipes.dagger_activities_multibinding.di.app.AppComponent;
 import com.frogermcs.recipes.dagger_activities_multibinding.di.app.DaggerAppComponent;
@@ -19,8 +19,8 @@ public class MyApplication extends Application implements ActivityComponentFacto
 
     private AppComponent appComponent;
 
-    public static HasMembersInjectors get(Context context) {
-        return ((HasMembersInjectors) context.getApplicationContext());
+    public static HasActivityFieldsInjectors get(Context context) {
+        return ((HasActivityFieldsInjectors) context.getApplicationContext());
     }
 
     @Override
