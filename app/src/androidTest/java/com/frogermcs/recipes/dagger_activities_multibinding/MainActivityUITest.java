@@ -1,13 +1,13 @@
-package com.frogermcs.recipes.dagger_activities_multibinding.main_activity;
+package com.frogermcs.recipes.dagger_activities_multibinding;
 
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.frogermcs.recipes.dagger_activities_multibinding.ApplicationMock;
-import com.frogermcs.recipes.dagger_activities_multibinding.R;
-import com.frogermcs.recipes.dagger_activities_multibinding.Utils;
+import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityComponent;
+import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityModule;
+import com.frogermcs.recipes.dagger_activities_multibinding.main_activity.MainActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -39,24 +39,24 @@ public class MainActivityUITest {
     public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class, true, false);
 
     @Mock
-    MainActivityComponent.Builder builder;
+    ActivityComponent.Builder builder;
     @Mock
     Utils utilsMock;
 
-    private MainActivityComponent mainActivityComponent = new MainActivityComponent() {
+    private ActivityComponent mainActivityComponent = new ActivityComponent() {
         @Override
-        public void injectMembers(MainActivity instance) {
-            instance.mainActivityPresenter = new MainActivityPresenter(instance, utilsMock);
+        public void inject(BaseActivity instance) {
+//            instance.activityInjectors = new HashMa
         }
     };
 
     @Before
     public void setUp() {
         when(builder.build()).thenReturn(mainActivityComponent);
-        when(builder.activityModule(any(MainActivityComponent.MainActivityModule.class))).thenReturn(builder);
+        when(builder.activityModule(any(ActivityModule.class))).thenReturn(builder);
 
-        ApplicationMock app = (ApplicationMock) InstrumentationRegistry.getTargetContext().getApplicationContext();
-        app.putActivityComponentBuilder(builder, MainActivity.class);
+        MyApplication app = (MyApplication) InstrumentationRegistry.getTargetContext().getApplicationContext();
+//        app.putActivityComponentBuilder(builder, MainActivity.class);
     }
 
     @Test

@@ -1,5 +1,7 @@
 package com.frogermcs.recipes.dagger_activities_multibinding.main_activity;
 
+import android.app.Activity;
+
 import com.frogermcs.recipes.dagger_activities_multibinding.Utils;
 import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityScope;
 
@@ -15,8 +17,8 @@ public class MainActivityPresenter {
     private final Utils utils;
 
     @Inject
-    public MainActivityPresenter(MainActivity activity, Utils utils) {
-        this.activity = activity;
+    public MainActivityPresenter(Activity activity, Utils utils) {
+        this.activity = (MainActivity) activity;
         this.utils = utils;
     }
 

@@ -1,5 +1,7 @@
 package com.frogermcs.recipes.dagger_activities_multibinding.second_activity;
 
+import android.app.Activity;
+
 import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityScope;
 
 import javax.inject.Inject;
@@ -10,10 +12,10 @@ import javax.inject.Inject;
 
 @ActivityScope
 public class SecondActivityPresenter {
-    private SecondActivity activity;
+    private Activity activity;
 
     @Inject
-    public SecondActivityPresenter(SecondActivity activity) {
+    public SecondActivityPresenter(Activity activity) {
         this.activity = activity;
     }
 }

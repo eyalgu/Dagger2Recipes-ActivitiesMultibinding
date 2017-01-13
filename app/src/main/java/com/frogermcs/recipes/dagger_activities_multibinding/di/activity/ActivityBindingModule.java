@@ -1,32 +1,35 @@
 package com.frogermcs.recipes.dagger_activities_multibinding.di.activity;
 
-import com.frogermcs.recipes.dagger_activities_multibinding.main_activity.MainActivity;
-import com.frogermcs.recipes.dagger_activities_multibinding.main_activity.MainActivityComponent;
-import com.frogermcs.recipes.dagger_activities_multibinding.second_activity.SecondActivity;
-import com.frogermcs.recipes.dagger_activities_multibinding.second_activity.SecondActivityComponent;
+import android.app.Activity;
 
-import dagger.Binds;
+import com.frogermcs.recipes.dagger_activities_multibinding.main_activity.MainActivity;
+import com.frogermcs.recipes.dagger_activities_multibinding.second_activity.SecondActivity;
+
+import dagger.MembersInjector;
 import dagger.Module;
+import dagger.Provides;
 import dagger.multibindings.IntoMap;
 
 /**
  * Created by froger_mcs on 14/09/16.
  */
 
-@Module(
-        subcomponents = {
-                MainActivityComponent.class,
-                SecondActivityComponent.class
-        })
-public abstract class ActivityBindingModule {
+@Module
+public class ActivityBindingModule {
 
-    @Binds
+    @Provides
     @IntoMap
     @ActivityKey(MainActivity.class)
-    public abstract ActivityComponentBuilder mainActivityComponentBuilder(MainActivityComponent.Builder impl);
+    @ActivityScope
+    ActivityInjector mainActivityInjector(final MembersInjector<MainActivity> membersInjector) {
+        return ActivityInjectors.from(membersInjector);
+    }
 
-    @Binds
+    @Provides
     @IntoMap
     @ActivityKey(SecondActivity.class)
-    public abstract ActivityComponentBuilder secondActivityComponentBuilder(SecondActivityComponent.Builder impl);
+    @ActivityScope
+    ActivityInjector secondActivityInjector(final MembersInjector<SecondActivity> membersInjector) {
+        return ActivityInjectors.from(membersInjector);
+    }
 }

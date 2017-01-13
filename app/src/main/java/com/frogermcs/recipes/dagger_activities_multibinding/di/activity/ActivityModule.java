@@ -1,5 +1,7 @@
 package com.frogermcs.recipes.dagger_activities_multibinding.di.activity;
 
+import android.app.Activity;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -8,16 +10,16 @@ import dagger.Provides;
  */
 
 @Module
-public abstract class ActivityModule<T> {
-    protected final T activity;
+public class ActivityModule {
+    private final Activity activity;
 
-    public ActivityModule(T activity) {
+    public ActivityModule(Activity activity) {
         this.activity = activity;
     }
 
     @Provides
     @ActivityScope
-    public T provideActivity() {
+    public Activity provideActivity() {
         return activity;
     }
 }

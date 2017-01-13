@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.frogermcs.recipes.dagger_activities_multibinding.BaseActivity;
 import com.frogermcs.recipes.dagger_activities_multibinding.R;
-import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.HasActivitySubcomponentBuilders;
+import com.frogermcs.recipes.dagger_activities_multibinding.di.activity.ActivityInjector;
 
 import javax.inject.Inject;
 
@@ -14,6 +14,8 @@ import javax.inject.Inject;
 
 public class SecondActivity extends BaseActivity {
 
+    public interface Injector extends ActivityInjector {}
+
     @Inject
     SecondActivityPresenter presenter;
 
@@ -22,13 +24,4 @@ public class SecondActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
     }
-
-    @Override
-    protected void injectMembers(HasActivitySubcomponentBuilders hasActivitySubcomponentBuilders) {
-        ((SecondActivityComponent.Builder) hasActivitySubcomponentBuilders.getActivityComponentBuilder(SecondActivity.class))
-                .activityModule(new SecondActivityComponent.SecondActivityModule(this))
-                .build()
-                .injectMembers(this);
-    }
-
 }
